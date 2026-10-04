@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShyamSArts | Wooden & Furniture</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">ShyamS<span>Arts</span></div>
+  <nav>
+    <a href="#home">Home</a><a href="#shop">Shop</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="cart-btn" onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="eyebrow">CRAFTED WITH WOOD • MADE TO LAST</p>
+    <h1>Beautiful Wood.<br><span>Beautiful Living.</span></h1>
+    <p>Handcrafted wooden décor and furniture designed to bring warmth, style and character to your home.</p>
+    <a class="primary" href="#shop">Shop Collection</a>
+  </div>
+</section>
+
+<section class="trust">
+  <div><b>20%</b><small>Advance to Order</small></div>
+  <div><b>Handcrafted</b><small>Quality Wooden Products</small></div>
+  <div><b>Custom</b><small>Furniture Available</small></div>
+</section>
+
+<section id="shop" class="section">
+  <div class="section-head">
+    <div><p class="eyebrow">OUR COLLECTION</p><h2>Wooden & Furniture</h2></div>
+    <select id="category" onchange="renderProducts()">
+      <option value="all">All Products</option><option value="decor">Wooden Decor</option><option value="furniture">Furniture</option>
+    </select>
+  </div>
+  <div class="products" id="products"></div>
+</section>
+
+<section id="about" class="about">
+  <div><p class="eyebrow">ABOUT SHYAMSARTS</p><h2>Crafted for homes that feel special.</h2>
+  <p>ShyamSArts brings together traditional wood craftsmanship and clean modern design. From statement furniture to simple wall décor, every piece is made to add natural beauty to your space.</p></div>
+  <div class="about-card"><strong>20% Advance</strong><p>Place your order with only 20% advance. The remaining amount can be collected according to your delivery terms.</p></div>
+</section>
+
+<section id="contact" class="contact section">
+  <p class="eyebrow">GET IN TOUCH</p><h2>Let's build something beautiful.</h2>
+  <p>For custom furniture, bulk orders or product enquiries, contact ShyamSArts.</p>
+  <button class="primary" onclick="contactWhatsApp()">WhatsApp Us</button>
+</section>
+
+<footer><p><a href="/admin.html" style="color:#d9c8b9">Admin Panel</a></p><div class="logo">ShyamS<span>Arts</span></div><p>Wooden Products & Furniture</p><p>© 2026 ShyamSArts. All rights reserved.</p></footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="cart" id="cart">
+  <button class="close" onclick="closeCart()">×</button><h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <div class="cart-total"><span>Total</span><b id="total">₹0</b></div>
+  <div class="advance"><span>20% Advance</span><b id="advance">₹0</b></div>
+  <button class="primary full" onclick="checkout()">Proceed with 20% Advance</button>
+</aside>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script><script src="script.js"></script>
+
+<div class="checkout-overlay" id="checkoutOverlay">
+  <div class="checkout-box">
+    <button class="close" onclick="closeCheckout()">×</button>
+    <p class="eyebrow">SECURE ORDER</p>
+    <h2>Complete Your Order</h2>
+    <p class="checkout-note">Pay only <b>20% advance</b> to confirm your order. Remaining amount is due as per delivery terms.</p>
+    <form id="checkoutForm" onsubmit="placeOrder(event)">
+      <input id="custName" required placeholder="Full Name">
+      <input id="custPhone" required pattern="[0-9]{10}" placeholder="Mobile Number (10 digits)">
+      <textarea id="custAddress" required placeholder="Complete Delivery Address"></textarea>
+      <input id="custCity" required placeholder="City">
+      <input id="custPincode" required pattern="[0-9]{6}" placeholder="Pincode">
+      <div class="order-summary">
+        <div><span>Order Total</span><b id="checkoutTotal">₹0</b></div>
+        <div><span>20% Advance</span><b id="checkoutAdvance">₹0</b></div>
+        <div><span>Remaining</span><b id="checkoutRemaining">₹0</b></div>
+      </div>
+      <button class="primary full" type="submit">Continue to Pay 20% Advance</button>
+    </form>
+  </div>
+</div>
+
+<div class="checkout-overlay" id="freeCheckout">
+  <div class="checkout-box">
+    <button class="close" onclick="closeFreeCheckout()">×</button>
+    <p class="eyebrow">20% ADVANCE</p>
+    <h2>Confirm Your Order</h2>
+    <p>इस free version में advance payment UPI से manually किया जाएगा.</p>
+    <div class="order-summary">
+      <div><span>Order Total</span><b id="fTotal">₹0</b></div>
+      <div><span>20% Advance</span><b id="fAdvance">₹0</b></div>
+    </div>
+    <div class="upi-box"><b>UPI ID</b><div id="upiId">isubhashprajapat-3@okaxis</div><small>अपना असली UPI ID यहाँ website settings में डालें.</small></div>
+    <input id="fName" placeholder="Full Name" required>
+    <input id="fPhone" placeholder="Mobile Number" required>
+    <textarea id="fAddress" placeholder="Delivery Address" required></textarea>
+    <button class="primary full" onclick="sendFreeOrder()">WhatsApp पर Order भेजें</button>
+  </div>
+</div>
+</body>
+</html>
